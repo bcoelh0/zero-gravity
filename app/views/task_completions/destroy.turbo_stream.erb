@@ -1,11 +1,13 @@
 <%# Replace every task row with its new completion/active state %>
 <% @all_tasks.each do |task| %>
   <%= turbo_stream.replace "task_row_#{task.id}" do %>
+    <% c = @new_completions[task.id] %>
     <%= render "teacher_dashboard/task_row",
           task:          task,
-          done:          @new_completions.key?(task.id),
+          done:          c.present?,
           active:        task.id == @active_task.id,
-          completion_id: @new_completions[task.id],
+          completion_id: c&.fetch(:id),
+          completed_at:  c&.fetch(:completed_at),
           teacher:       @teacher %>
   <% end %>
 <% end %>

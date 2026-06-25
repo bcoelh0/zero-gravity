@@ -8,11 +8,12 @@ class TaskCompletionsController < ApplicationController
     ) { |c| c.completed_at = Time.current }
     @completion_id = completion.id
 
-    @teacher.update(last_login_at: Time.current)
-
-    if params.key?(:weekly_email_opted_in)
-      @teacher.update(weekly_email_opted_in: params[:weekly_email_opted_in] == "true")
-    end
+    teacher_attrs = { last_login_at: Time.current }
+    teacher_attrs[:subject]               = params[:subject]          if params[:subject].present?
+    teacher_attrs[:curriculum_level]      = params[:curriculum_level] if params[:curriculum_level].present?
+    teacher_attrs[:topic]                 = params[:topic]            if params[:topic].present?
+    teacher_attrs[:weekly_email_opted_in] = (params[:weekly_email_opted_in] == "true") if params.key?(:weekly_email_opted_in)
+    @teacher.update(teacher_attrs)
 
     all_tasks        = OnboardingTask.all
     new_completions  = @teacher.teacher_task_completions.pluck(:onboarding_task_id, :id).to_h
@@ -34,7 +35,9 @@ class TaskCompletionsController < ApplicationController
     completion.destroy
 
     @all_tasks       = OnboardingTask.all
-    new_completions  = @teacher.teacher_task_completions.pluck(:onboarding_task_id, :id).to_h
+    new_completions  = @teacher.teacher_task_completions
+                               .pluck(:onboarding_task_id, :id, :completed_at)
+                               .each_with_object({}) { |(tid, id, ca), h| h[tid] = { id: id, completed_at: ca } }
     @new_completions = new_completions
     @active_task     = @all_tasks.find { |t| !new_completions.key?(t.id) } || @all_tasks.first
     @completed_count = new_completions.count

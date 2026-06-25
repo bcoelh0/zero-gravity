@@ -1,6 +1,7 @@
 <% completed_count = @completions.count %>
 <% total_count     = @tasks.count %>
 <% pct             = total_count > 0 ? (completed_count.to_f / total_count * 100).round : 0 %>
+<%# @completions is now task_id => { id:, completed_at: } %>
 
 <div class="mb-6">
   <p class="text-sm text-zg-gray font-medium uppercase tracking-wide mb-1">
@@ -28,11 +29,13 @@
 
     <div class="space-y-3">
       <% @tasks.each do |task| %>
+        <% c = @completions[task.id] %>
         <%= render "task_row",
               task:          task,
-              done:          @completions.key?(task.id),
+              done:          c.present?,
               active:        task.id == @active_task.id,
-              completion_id: @completions[task.id],
+              completion_id: c&.fetch(:id),
+              completed_at:  c&.fetch(:completed_at),
               teacher:       @teacher %>
       <% end %>
     </div>
