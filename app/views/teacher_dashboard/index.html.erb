@@ -68,7 +68,9 @@
 
   // Task 4 — copy join link then submit completion form
   function copyAndComplete() {
-    navigator.clipboard.writeText('join.zerogravity.ai/oak-maths-7b').catch(() => {})
+    const linkEl = document.querySelector('#task_detail .font-mono')
+    const link = linkEl ? linkEl.textContent.trim() : 'join.zerogravity.ai/oak-maths-7b'
+    navigator.clipboard.writeText(link).catch(() => {})
     const btn = document.getElementById('copy-btn')
     btn.textContent = 'Copied ✓'
     btn.disabled = true

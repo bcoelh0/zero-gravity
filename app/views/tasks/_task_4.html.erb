@@ -7,11 +7,16 @@
       <h2 class="text-lg font-bold text-gray-900 mb-1">Share the AI Tutor with your students</h2>
       <p class="text-sm text-gray-500 mb-6">Send students their join link — takes 2 minutes. Once they're in, you'll see their activity here.</p>
 
+      <%
+        subject_slug = (teacher.subject || "maths").downcase.gsub(/\s+/, "-").gsub(/[^a-z0-9\-]/, "")
+        join_link    = "join.zerogravity.ai/oak-#{subject_slug}-7b"
+      %>
+
       <div class="mb-2">
         <label class="block text-xs font-medium text-gray-600 mb-1">Your class join link</label>
         <div class="flex items-center gap-2">
           <div class="flex-1 bg-gray-50 border border-gray-200 rounded-lg px-3 py-2.5 text-sm font-mono text-gray-700 truncate">
-            join.zerogravity.ai/oak-maths-7b
+            <%= join_link %>
           </div>
           <button id="copy-btn" onclick="copyAndComplete()" type="button"
                   class="flex-shrink-0 bg-zg-blue text-white text-sm font-semibold px-4 py-2.5 rounded-lg hover:bg-blue-700 transition-colors cursor-pointer">
@@ -22,13 +27,16 @@
 
       <details class="mt-5">
         <summary class="text-xs text-gray-400 hover:text-gray-600 cursor-pointer select-none">
-          Suggested message to paste into email or Teams ›
+          Suggested message to paste into email or message ›
         </summary>
         <div class="mt-3 bg-gray-50 rounded-lg border border-gray-200 p-3 text-xs text-gray-600 leading-relaxed">
           Hi everyone,<br><br>
-          We're using Zero Gravity this term to support your revision. Click the link below to get started — it takes under a minute to set up.<br><br>
-          <span class="font-mono">join.zerogravity.ai/oak-maths-7b</span><br><br>
-          Let me know if you have any questions.
+          We're using Zero Gravity this term to support your
+          <%= teacher.subject&.downcase || "revision" %>.
+          Click the link below to get started — it takes under a minute to set up.<br><br>
+          <span class="font-mono"><%= join_link %></span><br><br>
+          Let me know if you have any questions.<br><br>
+          <%= teacher.name.split.first %>
         </div>
       </details>
 

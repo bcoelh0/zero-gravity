@@ -5,36 +5,60 @@
     </div>
     <div class="px-6 py-6">
       <h2 class="text-lg font-bold text-gray-900 mb-1">Assign your first topic</h2>
-      <p class="text-sm text-gray-500 mb-6">You're teaching Year 10 Maths. What are you covering this half-term? The AI tutor will align revision and practice to it.</p>
+      <% subject_label = teacher.subject.presence || "Year 10 Maths" %>
+      <% level_label   = teacher.curriculum_level.presence %>
+      <p class="text-sm text-gray-500 mb-6">
+        You're teaching <strong class="text-gray-700"><%= subject_label %><%= level_label ? " (#{level_label})" : "" %></strong>.
+        What are you covering this half-term? The AI tutor will align revision and practice to it.
+      </p>
 
-      <%= form_with url: task_completions_path, method: :post, id: "topic-form" do |f| %>
-        <%= hidden_field_tag :teacher_id, teacher.id %>
-        <%= hidden_field_tag :onboarding_task_id, task.id %>
-      <% end %>
-
-      <div class="mb-4">
-        <label class="block text-xs font-medium text-gray-600 mb-1">Topic</label>
-        <input id="topic-input" type="text" placeholder="e.g. Quadratic equations"
-               class="w-full text-sm border border-gray-200 rounded-lg px-3 py-2.5 focus:outline-none focus:ring-2 focus:ring-zg-blue" />
-      </div>
-
-      <div class="flex flex-wrap gap-2 mb-6">
-        <% ["Quadratic equations", "Trigonometry", "Algebra", "Probability", "Fractions & ratios"].each do |chip| %>
-          <button onclick="document.getElementById('topic-input').value = '<%= chip %>'"
-                  type="button"
-                  class="text-xs px-3 py-1.5 rounded-full border border-gray-200 text-gray-600 hover:border-zg-blue hover:text-zg-blue transition-colors cursor-pointer bg-white">
-            <%= chip %>
-          </button>
+      <% if completed && teacher.topic.present? %>
+        <div class="bg-gray-50 rounded-xl border border-gray-200 p-4 mb-6">
+          <p class="text-xs font-medium text-gray-400 mb-1">Current topic</p>
+          <p class="text-sm font-semibold text-gray-800"><%= teacher.topic %></p>
+        </div>
+      <% else %>
+        <%
+          topic_chips = {
+            "Mathematics" => ["Quadratic equations", "Trigonometry", "Algebra", "Probability", "Fractions & ratios"],
+            "English"     => ["Of Mice and Men", "Macbeth", "An Inspector Calls", "Descriptive writing", "Poetry analysis"],
+            "Science"     => ["Forces & motion", "Cell biology", "Chemical reactions", "Electricity", "Genetics"],
+            "History"     => ["World War 1", "World War 2", "The Cold War", "Medieval England", "Industrial Revolution"],
+            "Geography"   => ["Tectonic hazards", "Urban issues", "River landscapes", "Climate change", "Ecosystems"],
+            "Languages"   => ["Present tense verbs", "Holiday vocabulary", "Identity & culture", "Town & directions", "Future plans"],
+          }
+          chips = topic_chips[teacher.subject] || topic_chips["Mathematics"]
+        %>
+        <%= form_with url: task_completions_path, method: :post, id: "topic-form" do |f| %>
+          <%= hidden_field_tag :teacher_id, teacher.id %>
+          <%= hidden_field_tag :onboarding_task_id, task.id %>
+          <input type="hidden" name="topic" id="topic-hidden" value="" />
         <% end %>
-      </div>
 
-      <% unless completed %>
+        <div class="mb-4">
+          <label class="block text-xs font-medium text-gray-600 mb-1">Topic</label>
+          <input id="topic-input" type="text" placeholder="e.g. <%= chips.first %>"
+                 oninput="document.getElementById('topic-hidden').value = this.value"
+                 class="w-full text-sm border border-gray-200 rounded-lg px-3 py-2.5 focus:outline-none focus:ring-2 focus:ring-zg-blue" />
+        </div>
+
+        <div class="flex flex-wrap gap-2 mb-6">
+          <% chips.each do |chip| %>
+            <button onclick="document.getElementById('topic-input').value = '<%= chip %>'; document.getElementById('topic-hidden').value = '<%= chip %>'"
+                    type="button"
+                    class="text-xs px-3 py-1.5 rounded-full border border-gray-200 text-gray-600 hover:border-zg-blue hover:text-zg-blue transition-colors cursor-pointer bg-white">
+              <%= chip %>
+            </button>
+          <% end %>
+        </div>
+
         <button onclick="document.getElementById('topic-form').requestSubmit()"
                 type="button"
                 class="w-full bg-zg-blue text-white text-sm font-semibold py-3 px-4 rounded-xl hover:bg-blue-700 transition-colors cursor-pointer">
           Set topic →
         </button>
       <% end %>
+
       <%= render "tasks/task_footer", completed: completed, completion_id: completion_id %>
     </div>
   </div>
