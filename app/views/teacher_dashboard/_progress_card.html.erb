@@ -6,10 +6,15 @@
     </span>
   </div>
   <div class="w-full bg-gray-100 rounded-full h-2.5">
-    <div class="h-2.5 rounded-full transition-all duration-500 <%= pct == 100 ? 'bg-zg-green' : 'bg-zg-blue' %>"
-         style="width: <%= pct %>%"></div>
+    <div class="h-2.5 rounded-full <%= pct == 100 ? 'bg-zg-green' : 'bg-zg-blue' %>"
+         style="width: <%= pct %>%; transition: width 0.6s ease"></div>
   </div>
-  <p class="text-xs <%= pct == 100 ? 'text-zg-green font-medium' : 'text-gray-400' %> mt-2">
-    <%= pct == 100 ? "✓ You're all set up. " : "" %>Your HoD can see your progress.
-  </p>
+  <div class="flex items-center justify-between mt-2">
+    <p class="text-xs <%= pct == 100 ? 'text-zg-green font-medium' : 'text-gray-400' %>">
+      <%= pct == 100 ? "✓ You're all set up." : "Your HoD can see your progress." %>
+    </p>
+    <% if pct < 100 %>
+      <p class="text-xs text-gray-400">~<%= (total_count - completed_count) * 5 %> min left</p>
+    <% end %>
+  </div>
 </div>

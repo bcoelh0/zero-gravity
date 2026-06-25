@@ -9,7 +9,15 @@
   <h1 class="text-2xl font-bold text-gray-900 mb-1">
     Good <%= Time.current.hour < 12 ? "morning" : "afternoon" %>, <%= @teacher.name.split.first %>.
   </h1>
-  <p class="text-gray-500 text-sm">Complete these 5 steps in your first week — about 25 minutes total.</p>
+  <p class="text-gray-500 text-sm">
+    <% if pct == 100 %>
+      You're all set up. Students can now get the most from Zero Gravity.
+    <% elsif completed_count > 0 %>
+      You're nearly there — keep going.
+    <% else %>
+      Complete these 5 steps in your first week — about 25 minutes total.
+    <% end %>
+  </p>
 </div>
 
 <div id="split-container" class="flex gap-4 items-start">
