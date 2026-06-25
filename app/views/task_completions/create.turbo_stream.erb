@@ -39,13 +39,50 @@
           completion_id: nil %>
   <% else %>
     <turbo-frame id="task_detail">
-      <div class="detail-content bg-white rounded-xl border border-green-200 flex flex-col">
-        <div class="px-6 py-8 text-center">
+      <div class="detail-content bg-white rounded-xl border border-green-200 flex flex-col relative overflow-hidden">
+        <canvas id="confetti-canvas" class="absolute inset-0 pointer-events-none w-full h-full"></canvas>
+        <div class="px-6 py-8 text-center relative">
           <div class="text-4xl mb-3">🎉</div>
           <h2 class="text-lg font-bold text-gray-900 mb-2">You're all set up!</h2>
           <p class="text-sm text-gray-500">Your HoD can see you've completed your first week setup. Students can now get the most out of Zero Gravity.</p>
         </div>
       </div>
     </turbo-frame>
+    <script>
+      (function() {
+        const canvas = document.getElementById('confetti-canvas')
+        if (!canvas) return
+        const ctx = canvas.getContext('2d')
+        canvas.width  = canvas.offsetWidth
+        canvas.height = canvas.offsetHeight
+        const pieces = Array.from({length: 80}, () => ({
+          x: Math.random() * canvas.width,
+          y: Math.random() * canvas.height - canvas.height,
+          r: Math.random() * 5 + 3,
+          d: Math.random() * 4 + 2,
+          color: ['#2563EB','#16a34a','#f59e0b','#ec4899','#8b5cf6'][Math.floor(Math.random()*5)],
+          tilt: Math.random() * 10 - 5,
+          spin: (Math.random() - 0.5) * 0.2
+        }))
+        let frame = 0
+        function draw() {
+          ctx.clearRect(0, 0, canvas.width, canvas.height)
+          pieces.forEach(p => {
+            ctx.beginPath()
+            ctx.ellipse(p.x, p.y, p.r, p.r * 0.5, p.tilt, 0, Math.PI * 2)
+            ctx.fillStyle = p.color
+            ctx.globalAlpha = Math.max(0, 1 - frame / 120)
+            ctx.fill()
+            p.y  += p.d
+            p.x  += Math.sin(frame * 0.05 + p.tilt) * 0.8
+            p.tilt += p.spin
+          })
+          ctx.globalAlpha = 1
+          frame++
+          if (frame < 140) requestAnimationFrame(draw)
+        }
+        draw()
+      })()
+    </script>
   <% end %>
 <% end %>

@@ -62,7 +62,11 @@
 <script>
   // Task 3 — student report toggle (defined here so it survives Turbo Stream replacement)
   function toggleReport(i) {
-    document.getElementById('report-' + i).classList.toggle('hidden')
+    const report  = document.getElementById('report-' + i)
+    const chevron = document.getElementById('chevron-' + i)
+    const isOpen  = !report.classList.contains('hidden')
+    report.classList.toggle('hidden')
+    if (chevron) chevron.style.transform = isOpen ? '' : 'rotate(180deg)'
     document.getElementById('got-it-form').classList.remove('hidden')
   }
 
