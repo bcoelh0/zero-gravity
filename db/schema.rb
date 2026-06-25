@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_06_25_121743) do
+ActiveRecord::Schema[8.1].define(version: 2026_06_25_133503) do
   create_table "departments", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.string "name"
@@ -51,6 +51,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_06_25_121743) do
     t.string "name"
     t.integer "role"
     t.datetime "updated_at", null: false
+    t.boolean "weekly_email_opted_in"
     t.index ["department_id"], name: "index_teachers_on_department_id"
   end
 

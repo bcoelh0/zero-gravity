@@ -4,14 +4,14 @@
       <span class="text-xs font-medium text-gray-400 uppercase tracking-wide">Task 5 of 5</span>
     </div>
     <div class="px-6 py-6">
-      <h2 class="text-lg font-bold text-gray-900 mb-1">Set a weekly check-in reminder</h2>
-      <p class="text-sm text-gray-500 mb-5">5 minutes every Monday makes all the difference. Teachers who build this habit see 2× the student progress in term one.</p>
+      <h2 class="text-lg font-bold text-gray-900 mb-1">Get a weekly email from Zero Gravity</h2>
+      <p class="text-sm text-gray-500 mb-5">Every Monday morning, we'll send you a 5-minute briefing so you always know where your class stands.</p>
 
       <ul class="space-y-2 mb-6">
         <% [
-          "Review your class's overall progress score",
-          "Check which students haven't logged in this week",
-          "See what topics your class is finding hardest"
+          "Your class's overall progress score for the week",
+          "Students who haven't logged in or are falling behind",
+          "Topics your class is finding hardest right now"
         ].each do |point| %>
           <li class="flex items-start gap-2.5 text-sm text-gray-700">
             <span class="text-zg-blue mt-0.5 flex-shrink-0">✓</span>
@@ -20,25 +20,53 @@
         <% end %>
       </ul>
 
-      <% unless completed %>
-        <div class="grid grid-cols-2 gap-3">
-          <%= form_with url: task_completions_path, method: :post, id: "reminder-form" do |f| %>
+      <% if !completed %>
+        <div class="bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 mb-5 flex items-center gap-3">
+          <div class="w-8 h-8 rounded-full bg-zg-blue/10 flex items-center justify-center flex-shrink-0">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-zg-blue" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+            </svg>
+          </div>
+          <div>
+            <p class="text-xs text-gray-400 mb-0.5">Emails will be sent to</p>
+            <p class="text-sm font-semibold text-gray-800"><%= teacher.email %></p>
+          </div>
+        </div>
+
+        <div class="space-y-2">
+          <%= form_with url: task_completions_path, method: :post do |f| %>
             <%= hidden_field_tag :teacher_id, teacher.id %>
             <%= hidden_field_tag :onboarding_task_id, task.id %>
-            <a href="https://calendar.google.com/calendar/r/eventedit?text=Zero+Gravity+check-in&recur=RRULE:FREQ%3DWEEKLY;BYDAY%3DMO&duration=30"
-               target="_blank"
-               onclick="setTimeout(() => document.getElementById('reminder-form').requestSubmit(), 300)"
-               class="block text-center bg-zg-blue text-white text-sm font-semibold py-3 px-4 rounded-xl hover:bg-blue-700 transition-colors cursor-pointer">
-              Add to Google Calendar →
-            </a>
+            <%= hidden_field_tag :weekly_email_opted_in, "true" %>
             <button type="submit"
-                    class="bg-gray-100 text-gray-600 text-sm font-medium py-3 px-4 rounded-xl hover:bg-gray-200 transition-colors cursor-pointer w-full">
-              I'll set it myself
+                    class="w-full bg-zg-blue text-white text-sm font-semibold py-3 px-4 rounded-xl hover:bg-blue-700 transition-colors cursor-pointer">
+              Yes, email me every Monday →
+            </button>
+          <% end %>
+
+          <%= form_with url: task_completions_path, method: :post do |f| %>
+            <%= hidden_field_tag :teacher_id, teacher.id %>
+            <%= hidden_field_tag :onboarding_task_id, task.id %>
+            <%= hidden_field_tag :weekly_email_opted_in, "false" %>
+            <button type="submit"
+                    class="w-full bg-gray-100 text-gray-600 text-sm font-medium py-3 px-4 rounded-xl hover:bg-gray-200 transition-colors cursor-pointer">
+              No thanks, I'll check it myself
             </button>
           <% end %>
         </div>
       <% end %>
-      <%= render "task_footer", completed: completed, completion_id: completion_id %>
+
+      <%
+        footer_msg = if teacher.weekly_email_opted_in
+          "✓ Weekly emails confirmed — #{teacher.email}"
+        else
+          "✓ Completed"
+        end
+      %>
+      <%= render "tasks/task_footer",
+            completed:      completed,
+            completion_id:  completion_id,
+            footer_message: footer_msg %>
     </div>
   </div>
 </turbo-frame>

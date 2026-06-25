@@ -10,6 +10,10 @@ class TaskCompletionsController < ApplicationController
 
     @teacher.update(last_login_at: Time.current)
 
+    if params.key?(:weekly_email_opted_in)
+      @teacher.update(weekly_email_opted_in: params[:weekly_email_opted_in] == "true")
+    end
+
     all_tasks        = OnboardingTask.all
     new_completions  = @teacher.teacher_task_completions.pluck(:onboarding_task_id, :id).to_h
     @next_task       = all_tasks.find { |t| !new_completions.key?(t.id) }

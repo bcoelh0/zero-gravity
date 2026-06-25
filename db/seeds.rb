@@ -56,7 +56,7 @@ claire = Teacher.create!(
 dan = Teacher.create!(
   department: maths, name: "Daniel Osei",
   email: "d.osei@oakwood.ac.uk", role: :teacher,
-  last_login_at: 2.hours.ago
+  last_login_at: 2.hours.ago, weekly_email_opted_in: true
 )
 [t1, t2, t3, t4, t5].each do |t|
   TeacherTaskCompletion.create!(teacher: dan, onboarding_task: t, completed_at: rand(1..3).days.ago)
