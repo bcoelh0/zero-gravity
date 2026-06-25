@@ -1,0 +1,44 @@
+<turbo-frame id="task_detail">
+  <div class="detail-content bg-white rounded-xl border border-gray-200 flex flex-col">
+    <div class="px-6 py-4 border-b border-gray-100">
+      <span class="text-xs font-medium text-gray-400 uppercase tracking-wide">Task 5 of 5</span>
+    </div>
+    <div class="px-6 py-6">
+      <h2 class="text-lg font-bold text-gray-900 mb-1">Set a weekly check-in reminder</h2>
+      <p class="text-sm text-gray-500 mb-5">5 minutes every Monday makes all the difference. Teachers who build this habit see 2× the student progress in term one.</p>
+
+      <ul class="space-y-2 mb-6">
+        <% [
+          "Review your class's overall progress score",
+          "Check which students haven't logged in this week",
+          "See what topics your class is finding hardest"
+        ].each do |point| %>
+          <li class="flex items-start gap-2.5 text-sm text-gray-700">
+            <span class="text-zg-blue mt-0.5 flex-shrink-0">✓</span>
+            <%= point %>
+          </li>
+        <% end %>
+      </ul>
+
+      <% unless completed %>
+        <div class="grid grid-cols-2 gap-3">
+          <%= form_with url: task_completions_path, method: :post, id: "reminder-form" do |f| %>
+            <%= hidden_field_tag :teacher_id, teacher.id %>
+            <%= hidden_field_tag :onboarding_task_id, task.id %>
+            <a href="https://calendar.google.com/calendar/r/eventedit?text=Zero+Gravity+check-in&recur=RRULE:FREQ%3DWEEKLY;BYDAY%3DMO&duration=30"
+               target="_blank"
+               onclick="setTimeout(() => document.getElementById('reminder-form').requestSubmit(), 300)"
+               class="block text-center bg-zg-blue text-white text-sm font-semibold py-3 px-4 rounded-xl hover:bg-blue-700 transition-colors cursor-pointer">
+              Add to Google Calendar →
+            </a>
+            <button type="submit"
+                    class="bg-gray-100 text-gray-600 text-sm font-medium py-3 px-4 rounded-xl hover:bg-gray-200 transition-colors cursor-pointer w-full">
+              I'll set it myself
+            </button>
+          <% end %>
+        </div>
+      <% end %>
+      <%= render "task_footer", completed: completed, completion_id: completion_id %>
+    </div>
+  </div>
+</turbo-frame>

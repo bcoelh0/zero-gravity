@@ -1,0 +1,64 @@
+<turbo-frame id="task_detail">
+  <div class="detail-content bg-white rounded-xl border border-gray-200 flex flex-col">
+    <div class="px-6 py-4 border-b border-gray-100">
+      <span class="text-xs font-medium text-gray-400 uppercase tracking-wide">Task 3 of 5</span>
+    </div>
+    <div class="px-6 py-6">
+      <h2 class="text-lg font-bold text-gray-900 mb-1">Check a student report</h2>
+      <p class="text-sm text-gray-500 mb-5">Open any student's report to see where they're strong and where they need support.</p>
+
+      <div class="space-y-2 mb-5">
+        <% [
+          { name: "Emma Clarke",    initials: "EC", status: "On track",      color: "blue",  last: "Today",
+            report: ["Strong on number operations and algebra basics", "Making good progress on quadratic equations", "Could benefit from more practice on graph sketching"] },
+          { name: "James Okonkwo",  initials: "JO", status: "Needs support", color: "amber", last: "3 days ago",
+            report: ["Struggling with multi-step equations", "Hasn't attempted the last 2 topic quizzes", "Strong on basic arithmetic — build from here"] },
+          { name: "Ayesha Patel",   initials: "AP", status: "Excelling",     color: "green", last: "Yesterday",
+            report: ["Top of class on algebraic reasoning", "Consistently completes extension tasks", "Ready for A-Level stretch material on this topic"] }
+        ].each_with_index do |s, i| %>
+          <div class="rounded-xl border border-gray-200 overflow-hidden">
+            <button onclick="toggleReport(<%= i %>)"
+                    type="button"
+                    class="w-full flex items-center gap-3 px-4 py-3 hover:bg-gray-50 transition-colors cursor-pointer text-left">
+              <div class="w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center text-xs font-bold text-gray-600 flex-shrink-0">
+                <%= s[:initials] %>
+              </div>
+              <div class="flex-1 min-w-0">
+                <p class="text-sm font-medium text-gray-900"><%= s[:name] %></p>
+                <p class="text-xs text-gray-400">Last active: <%= s[:last] %></p>
+              </div>
+              <span class="text-xs font-medium px-2 py-1 rounded-full flex-shrink-0
+                <%= s[:color] == 'blue'  ? 'bg-blue-100 text-blue-700'   :
+                    s[:color] == 'amber' ? 'bg-amber-100 text-amber-700' :
+                                           'bg-green-100 text-green-700' %>">
+                <%= s[:status] %>
+              </span>
+            </button>
+            <div id="report-<%= i %>" class="hidden px-4 pb-4">
+              <ul class="space-y-1.5 mb-3">
+                <% s[:report].each do |point| %>
+                  <li class="text-xs text-gray-600 flex items-start gap-2">
+                    <span class="text-gray-300 mt-0.5">·</span><span><%= point %></span>
+                  </li>
+                <% end %>
+              </ul>
+            </div>
+          </div>
+        <% end %>
+      </div>
+
+      <% unless completed %>
+        <%= form_with url: task_completions_path, method: :post, id: "got-it-form",
+                      html: { class: "hidden" } do |f| %>
+          <%= hidden_field_tag :teacher_id, teacher.id %>
+          <%= hidden_field_tag :onboarding_task_id, task.id %>
+          <button type="submit"
+                  class="w-full bg-zg-blue text-white text-sm font-semibold py-3 px-4 rounded-xl hover:bg-blue-700 transition-colors cursor-pointer">
+            Got it →
+          </button>
+        <% end %>
+      <% end %>
+      <%= render "task_footer", completed: completed, completion_id: completion_id %>
+    </div>
+  </div>
+</turbo-frame>

@@ -1,0 +1,41 @@
+<turbo-frame id="task_detail">
+  <div class="detail-content bg-white rounded-xl border border-gray-200 flex flex-col">
+    <div class="px-6 py-4 border-b border-gray-100">
+      <span class="text-xs font-medium text-gray-400 uppercase tracking-wide">Task 2 of 5</span>
+    </div>
+    <div class="px-6 py-6">
+      <h2 class="text-lg font-bold text-gray-900 mb-1">Assign your first topic</h2>
+      <p class="text-sm text-gray-500 mb-6">You're teaching Year 10 Maths. What are you covering this half-term? The AI tutor will align revision and practice to it.</p>
+
+      <%= form_with url: task_completions_path, method: :post, id: "topic-form" do |f| %>
+        <%= hidden_field_tag :teacher_id, teacher.id %>
+        <%= hidden_field_tag :onboarding_task_id, task.id %>
+      <% end %>
+
+      <div class="mb-4">
+        <label class="block text-xs font-medium text-gray-600 mb-1">Topic</label>
+        <input id="topic-input" type="text" placeholder="e.g. Quadratic equations"
+               class="w-full text-sm border border-gray-200 rounded-lg px-3 py-2.5 focus:outline-none focus:ring-2 focus:ring-zg-blue" />
+      </div>
+
+      <div class="flex flex-wrap gap-2 mb-6">
+        <% ["Quadratic equations", "Trigonometry", "Algebra", "Probability", "Fractions & ratios"].each do |chip| %>
+          <button onclick="document.getElementById('topic-input').value = '<%= chip %>'"
+                  type="button"
+                  class="text-xs px-3 py-1.5 rounded-full border border-gray-200 text-gray-600 hover:border-zg-blue hover:text-zg-blue transition-colors cursor-pointer bg-white">
+            <%= chip %>
+          </button>
+        <% end %>
+      </div>
+
+      <% unless completed %>
+        <button onclick="document.getElementById('topic-form').requestSubmit()"
+                type="button"
+                class="w-full bg-zg-blue text-white text-sm font-semibold py-3 px-4 rounded-xl hover:bg-blue-700 transition-colors cursor-pointer">
+          Set topic →
+        </button>
+      <% end %>
+      <%= render "task_footer", completed: completed, completion_id: completion_id %>
+    </div>
+  </div>
+</turbo-frame>

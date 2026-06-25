@@ -1,0 +1,15 @@
+<div id="progress_card" class="bg-white rounded-xl border border-gray-200 p-5 mb-4">
+  <div class="flex items-center justify-between mb-2">
+    <span class="text-sm font-semibold text-gray-700">First week setup</span>
+    <span class="text-sm font-bold <%= pct == 100 ? 'text-zg-green' : 'text-zg-blue' %>">
+      <%= completed_count %>/<%= total_count %> done
+    </span>
+  </div>
+  <div class="w-full bg-gray-100 rounded-full h-2.5">
+    <div class="h-2.5 rounded-full transition-all duration-500 <%= pct == 100 ? 'bg-zg-green' : 'bg-zg-blue' %>"
+         style="width: <%= pct %>%"></div>
+  </div>
+  <p class="text-xs <%= pct == 100 ? 'text-zg-green font-medium' : 'text-gray-400' %> mt-2">
+    <%= pct == 100 ? "✓ You're all set up. " : "" %>Your HoD can see your progress.
+  </p>
+</div>

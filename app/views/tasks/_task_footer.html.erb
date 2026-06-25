@@ -1,0 +1,11 @@
+<% if completed %>
+  <div class="flex items-center justify-between pt-4 mt-2 border-t border-gray-100">
+    <span class="text-sm font-medium text-zg-green">✓ Completed</span>
+    <%= button_to task_completion_path(completion_id),
+          method: :delete,
+          class: "text-xs text-gray-400 hover:text-red-500 transition-colors cursor-pointer underline bg-transparent border-0 p-0",
+          form_class: "inline" do %>
+      Re-do this task
+    <% end %>
+  </div>
+<% end %>

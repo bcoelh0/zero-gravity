@@ -1,0 +1,28 @@
+<%# Replace every task row with its new completion/active state %>
+<% @all_tasks.each do |task| %>
+  <%= turbo_stream.replace "task_row_#{task.id}" do %>
+    <%= render "teacher_dashboard/task_row",
+          task:          task,
+          done:          @new_completions.key?(task.id),
+          active:        task.id == @active_task.id,
+          completion_id: @new_completions[task.id],
+          teacher:       @teacher %>
+  <% end %>
+<% end %>
+
+<%# Update the progress bar %>
+<%= turbo_stream.replace "progress_card" do %>
+  <%= render "teacher_dashboard/progress_card",
+        completed_count: @completed_count,
+        total_count:     @total_count,
+        pct:             @pct %>
+<% end %>
+
+<%# Show the uncompleted task in its incomplete (re-do) state in the right panel %>
+<%= turbo_stream.replace "task_detail" do %>
+  <%= render "tasks/task_#{@uncompleted_task.position}",
+        task:          @uncompleted_task,
+        teacher:       @teacher,
+        completed:     false,
+        completion_id: nil %>
+<% end %>

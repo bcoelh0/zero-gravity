@@ -1,0 +1,50 @@
+<%# Replace the completed task row — now shows ✓, green border, strikethrough %>
+<%= turbo_stream.replace "task_row_#{@completed_task.id}" do %>
+  <%= render "teacher_dashboard/task_row",
+        task:          @completed_task,
+        done:          true,
+        active:        false,
+        completion_id: @completion_id,
+        teacher:       @teacher %>
+<% end %>
+
+<%# Make the next incomplete task the active one in the left panel %>
+<% if @next_task %>
+  <%= turbo_stream.replace "task_row_#{@next_task.id}" do %>
+    <%= render "teacher_dashboard/task_row",
+          task:          @next_task,
+          done:          false,
+          active:        true,
+          completion_id: nil,
+          teacher:       @teacher %>
+  <% end %>
+<% end %>
+
+<%# Update the progress bar %>
+<%= turbo_stream.replace "progress_card" do %>
+  <%= render "teacher_dashboard/progress_card",
+        completed_count: @completed_count,
+        total_count:     @total_count,
+        pct:             @pct %>
+<% end %>
+
+<%# Load the next task in the right panel, or show the all-done state %>
+<%= turbo_stream.replace "task_detail" do %>
+  <% if @next_task %>
+    <%= render "tasks/task_#{@next_task.position}",
+          task:          @next_task,
+          teacher:       @teacher,
+          completed:     false,
+          completion_id: nil %>
+  <% else %>
+    <turbo-frame id="task_detail">
+      <div class="detail-content bg-white rounded-xl border border-green-200 flex flex-col">
+        <div class="px-6 py-8 text-center">
+          <div class="text-4xl mb-3">🎉</div>
+          <h2 class="text-lg font-bold text-gray-900 mb-2">You're all set up!</h2>
+          <p class="text-sm text-gray-500">Your HoD can see you've completed your first week setup. Students can now get the most out of Zero Gravity.</p>
+        </div>
+      </div>
+    </turbo-frame>
+  <% end %>
+<% end %>
