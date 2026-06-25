@@ -1,0 +1,13 @@
+<turbo-frame id="task_detail">
+  <div class="detail-content bg-white rounded-xl border border-gray-200 flex flex-col">
+    <div class="px-6 py-4 border-b border-gray-100">
+      <span class="text-xs font-medium text-gray-400 uppercase tracking-wide">
+        Task <%= @task.position %> of 5
+      </span>
+    </div>
+    <div class="px-6 py-6">
+      <h2 class="text-lg font-bold text-gray-900 mb-2"><%= @task.title %></h2>
+      <p class="text-sm text-gray-500 leading-relaxed"><%= @task.description %></p>
+    </div>
+  </div>
+</turbo-frame>

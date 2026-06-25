@@ -1,0 +1,132 @@
+<% completed_count = @completions.count %>
+<% total_count     = @tasks.count %>
+<% pct             = total_count > 0 ? (completed_count.to_f / total_count * 100).round : 0 %>
+
+<div class="mb-6">
+  <p class="text-sm text-zg-gray font-medium uppercase tracking-wide mb-1">
+    Oakwood Academy · Mathematics
+  </p>
+  <h1 class="text-2xl font-bold text-gray-900 mb-1">
+    Good <%= Time.current.hour < 12 ? "morning" : "afternoon" %>, <%= @teacher.name.split.first %>.
+  </h1>
+  <p class="text-gray-500 text-sm">Complete these 5 steps in your first week — about 25 minutes total.</p>
+</div>
+
+<div id="split-container" class="flex gap-4 items-start">
+
+  <%# Left panel: progress + task list — always at 40% %>
+  <div id="task-list-panel" style="width:40%; min-width:0; flex-shrink:0;">
+
+    <div class="bg-white rounded-xl border border-gray-200 p-5 mb-4">
+      <div class="flex items-center justify-between mb-2">
+        <span class="text-sm font-semibold text-gray-700">First week setup</span>
+        <span class="text-sm font-bold <%= pct == 100 ? 'text-zg-green' : 'text-zg-blue' %>">
+          <%= completed_count %>/<%= total_count %> done
+        </span>
+      </div>
+      <div class="w-full bg-gray-100 rounded-full h-2.5">
+        <div class="h-2.5 rounded-full transition-all duration-500 <%= pct == 100 ? 'bg-zg-green' : 'bg-zg-blue' %>"
+             style="width: <%= pct %>%"></div>
+      </div>
+      <p class="text-xs <%= pct == 100 ? 'text-zg-green font-medium' : 'text-gray-400' %> mt-2">
+        <%= pct == 100 ? "✓ You're all set up. " : "" %>Your HoD can see your progress.
+      </p>
+    </div>
+
+    <div class="space-y-3">
+      <% @tasks.each do |task| %>
+        <% completion_id = @completions[task.id] %>
+        <% done = completion_id.present? %>
+        <% active = task.id == @active_task.id %>
+        <div class="task-row bg-white rounded-xl border p-5 flex items-start gap-4 transition-all
+                    <%= done ? 'border-green-200 bg-green-50/30' : active ? 'border-zg-blue ring-1 ring-zg-blue' : 'border-gray-200' %>"
+             data-task-id="<%= task.id %>">
+
+          <%= turbo_frame_tag "task_#{task.id}" do %>
+            <div class="mt-0.5 flex-shrink-0">
+              <% if done %>
+                <%= button_to task_completion_path(completion_id),
+                      method: :delete,
+                      class: "w-6 h-6 rounded-full bg-zg-green flex items-center justify-center text-white text-xs font-bold hover:bg-green-700 transition-colors cursor-pointer",
+                      form_class: "inline" do %>
+                  ✓
+                <% end %>
+              <% else %>
+                <%= button_to task_completions_path,
+                      params: { teacher_id: @teacher.id, onboarding_task_id: task.id },
+                      method: :post,
+                      class: "w-6 h-6 rounded-full border-2 border-gray-300 hover:border-zg-blue transition-colors bg-white cursor-pointer",
+                      form_class: "inline" do %>
+                  &nbsp;
+                <% end %>
+              <% end %>
+            </div>
+          <% end %>
+
+          <% if done %>
+            <div class="flex-1 min-w-0">
+              <p class="font-semibold text-sm text-gray-400 line-through"><%= task.title %></p>
+              <p class="text-xs text-gray-400 mt-0.5 leading-relaxed"><%= task.description %></p>
+            </div>
+            <span class="text-xs font-medium text-gray-300 mt-0.5 flex-shrink-0"><%= task.position %>/5</span>
+          <% else %>
+            <%= link_to task_path(task), data: { turbo_frame: "task_detail" },
+                  class: "flex-1 min-w-0 group cursor-pointer" do %>
+              <p class="font-semibold text-sm <%= active ? 'text-zg-blue' : 'text-gray-900 group-hover:text-zg-blue' %> transition-colors">
+                <%= task.title %>
+              </p>
+              <p class="text-xs text-gray-500 mt-0.5 leading-relaxed"><%= task.description %></p>
+            <% end %>
+            <span class="text-xs font-medium text-gray-300 mt-0.5 flex-shrink-0"><%= task.position %>/5</span>
+          <% end %>
+
+        </div>
+      <% end %>
+    </div>
+
+  </div>
+
+  <%# Right panel: always visible, pre-loaded with the first open task %>
+  <turbo-frame id="task_detail"
+               src="<%= task_path(@active_task) %>"
+               style="flex:1; min-width:0;">
+  </turbo-frame>
+
+</div>
+
+<style>
+  #task_detail .detail-content {
+    opacity: 0;
+    transform: translateX(12px);
+    transition: opacity 0.25s ease, transform 0.25s ease;
+  }
+  #task_detail.is-open .detail-content {
+    opacity: 1;
+    transform: translateX(0);
+  }
+</style>
+
+<script>
+  // Animate content on every frame load (initial + task switches)
+  document.addEventListener('turbo:frame-load', function(e) {
+    if (e.target.id !== 'task_detail') return
+    e.target.classList.remove('is-open')
+    requestAnimationFrame(() => requestAnimationFrame(() => e.target.classList.add('is-open')))
+  })
+
+  // Update the active highlight in the task list when a task is clicked
+  document.querySelectorAll('[data-turbo-frame="task_detail"]').forEach(function(link) {
+    link.addEventListener('click', function() {
+      const clickedRow = link.closest('.task-row')
+      document.querySelectorAll('.task-row').forEach(function(row) {
+        row.classList.remove('border-zg-blue', 'ring-1', 'ring-zg-blue')
+        if (!row.classList.contains('border-green-200')) row.classList.add('border-gray-200')
+        row.querySelector('p') && row.querySelector('p').classList.replace('text-zg-blue', 'text-gray-900')
+      })
+      clickedRow.classList.remove('border-gray-200')
+      clickedRow.classList.add('border-zg-blue', 'ring-1', 'ring-zg-blue')
+      const title = clickedRow.querySelector('a p')
+      if (title) { title.classList.remove('text-gray-900'); title.classList.add('text-zg-blue') }
+    })
+  })
+</script>

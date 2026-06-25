@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Zero Gravity · School Hub</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: { sans: ['Inter', 'sans-serif'] },
+            colors: {
+              zg: { blue: '#2563EB', light: '#EFF6FF', green: '#16A34A', gray: '#6B7280' }
+            }
+          }
+        }
+      }
+    </script>
+    <%= csrf_meta_tags %>
+    <%= yield :head %>
+    <%= javascript_importmap_tags %>
+  </head>
+  <body class="bg-gray-50 font-sans text-gray-900">
+    <nav class="bg-white border-b border-gray-200 px-6 py-3 flex items-center justify-between">
+      <div class="flex items-center gap-2">
+        <span class="text-zg-blue font-bold text-lg tracking-tight">Zero Gravity</span>
+        <span class="text-gray-400 text-sm">School Hub</span>
+      </div>
+      <div class="flex items-center gap-2">
+        <span class="text-xs text-gray-400 font-medium">Demo:</span>
+        <select onchange="if(this.value) window.location=this.value"
+                class="text-xs border border-gray-200 rounded-lg px-2 py-1.5 text-gray-700 bg-white focus:outline-none focus:ring-2 focus:ring-zg-blue cursor-pointer">
+          <optgroup label="Teacher view">
+            <% @nav_teachers.each do |t| %>
+              <option value="<%= demo_switch_path(teacher_id: t.id) %>"
+                      <%= "selected" if @nav_demo_teacher_id == t.id && request.path != hod_dashboard_path %>>
+                <%= t.name %>
+              </option>
+            <% end %>
+          </optgroup>
+          <optgroup label="HoD view">
+            <option value="<%= demo_switch_path %>"
+                    <%= "selected" if request.path == hod_dashboard_path %>>
+              <%= @nav_hod&.name %> (HoD)
+            </option>
+          </optgroup>
+        </select>
+      </div>
+    </nav>
+    <main class="max-w-7xl mx-auto px-6 py-8">
+      <%= yield %>
+    </main>
+  </body>
+</html>
