@@ -1,11 +1,11 @@
 <turbo-frame id="task_detail">
-  <div class="detail-content bg-white rounded-xl border border-gray-200 flex flex-col">
-    <div class="px-6 py-4 border-b border-gray-100">
-      <span class="text-xs font-medium text-gray-400 uppercase tracking-wide">Task 5 of 5</span>
+  <div class="detail-content bg-zg-surface rounded-xl border border-zg-border flex flex-col">
+    <div class="px-6 py-4 border-b border-zg-border">
+      <span class="text-xs font-medium text-white/40 uppercase tracking-wide">Task 5 of 5</span>
     </div>
     <div class="px-6 py-6">
-      <h2 class="text-lg font-bold text-gray-900 mb-1">Get a weekly email from Zero Gravity</h2>
-      <p class="text-sm text-gray-500 mb-5">Every Monday morning, we'll send you a 5-minute briefing so you always know where your class stands.</p>
+      <h2 class="text-lg font-bold text-white mb-1">Get a weekly email from Zero Gravity</h2>
+      <p class="text-sm text-white/50 mb-5">Every Monday morning, we'll send you a 5-minute briefing so you always know where your class stands.</p>
 
       <ul class="space-y-2 mb-6">
         <% [
@@ -13,23 +13,23 @@
           "Students who haven't logged in or are falling behind",
           "Topics your class is finding hardest right now"
         ].each do |point| %>
-          <li class="flex items-start gap-2.5 text-sm text-gray-700">
-            <span class="text-zg-blue mt-0.5 flex-shrink-0">✓</span>
+          <li class="flex items-start gap-2.5 text-sm text-white/70">
+            <span class="text-zg-teal mt-0.5 flex-shrink-0">✓</span>
             <%= point %>
           </li>
         <% end %>
       </ul>
 
       <% if !completed %>
-        <div class="bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 mb-5 flex items-center gap-3">
-          <div class="w-8 h-8 rounded-full bg-zg-blue/10 flex items-center justify-center flex-shrink-0">
-            <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-zg-blue" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+        <div class="bg-white/5 border border-zg-border rounded-xl px-4 py-3 mb-5 flex items-center gap-3">
+          <div class="w-8 h-8 rounded-full bg-zg-teal/10 flex items-center justify-center flex-shrink-0">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-zg-teal" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
               <path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
             </svg>
           </div>
           <div>
-            <p class="text-xs text-gray-400 mb-0.5">Emails will be sent to</p>
-            <p class="text-sm font-semibold text-gray-800"><%= teacher.email %></p>
+            <p class="text-xs text-white/40 mb-0.5">Emails will be sent to</p>
+            <p class="text-sm font-semibold text-white"><%= teacher.email %></p>
           </div>
         </div>
 
@@ -39,7 +39,7 @@
             <%= hidden_field_tag :onboarding_task_id, task.id %>
             <%= hidden_field_tag :weekly_email_opted_in, "true" %>
             <button type="submit"
-                    class="w-full bg-zg-blue text-white text-sm font-semibold py-3 px-4 rounded-xl hover:bg-blue-700 transition-colors cursor-pointer">
+                    class="w-full bg-zg-teal text-zg-bg text-sm font-semibold py-3 px-4 rounded-xl hover:bg-zg-teal/80 transition-colors cursor-pointer">
               Yes, email me every Monday →
             </button>
           <% end %>
@@ -49,7 +49,7 @@
             <%= hidden_field_tag :onboarding_task_id, task.id %>
             <%= hidden_field_tag :weekly_email_opted_in, "false" %>
             <button type="submit"
-                    class="w-full bg-gray-100 text-gray-600 text-sm font-medium py-3 px-4 rounded-xl hover:bg-gray-200 transition-colors cursor-pointer">
+                    class="w-full bg-white/10 text-white/60 text-sm font-medium py-3 px-4 rounded-xl hover:bg-white/15 transition-colors cursor-pointer">
               No thanks, I'll check it myself
             </button>
           <% end %>

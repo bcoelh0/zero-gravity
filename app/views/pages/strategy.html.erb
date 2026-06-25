@@ -18,7 +18,7 @@
 
   <%# Back link %>
   <div class="no-print mb-8">
-    <%= link_to root_path, class: "inline-flex items-center gap-1.5 text-sm text-gray-400 hover:text-gray-600 transition-colors" do %>
+    <%= link_to root_path, class: "inline-flex items-center gap-1.5 text-sm text-white/40 hover:text-white/60 transition-colors" do %>
       <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
         <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18" />
       </svg>
@@ -27,15 +27,15 @@
   </div>
 
   <%# Header %>
-  <div class="mb-10 pb-8 border-b border-gray-200">
-    <h1 class="text-4xl font-bold text-gray-900 tracking-tight mb-3">First-Week Activation Loop</h1>
-    <p class="text-sm font-semibold text-gray-500">Zero Gravity · School Hub · PRD v1.0 · June 2025</p>
+  <div class="mb-10 pb-8 border-b border-zg-border">
+    <h1 class="text-4xl font-bold text-white tracking-tight mb-3">First-Week Activation Loop</h1>
+    <p class="text-sm font-semibold text-white/50">Zero Gravity · School Hub · PRD v1.0 · June 2025</p>
   </div>
 
   <%# Problem %>
-  <section class="mb-10 pb-10 border-b border-gray-100">
-    <h2 class="text-xl font-bold text-gray-900 mb-4">Problem</h2>
-    <div class="prose text-gray-700 leading-relaxed space-y-3 text-sm">
+  <section class="mb-10 pb-10 border-b border-zg-border">
+    <h2 class="text-xl font-bold text-white mb-4">Problem</h2>
+    <div class="prose text-white/70 leading-relaxed space-y-3 text-sm">
       <p>A school signs up for the product and becomes a customer, but the teachers don't activate it.</p>
       <p>The Head of Department buys Zero Gravity's School Hub, but the daily user is a classroom teacher with no spare time for a new tool that they need to learn how to use. If Zero Gravity doesn't earn a place inside a teacher's workflow in the first 7–10 days, it gets set aside and the school won't renew.</p>
       <p>The insight here is that <strong>the buyer and the user are different people.</strong></p>
@@ -43,9 +43,9 @@
   </section>
 
   <%# Solution %>
-  <section class="mb-10 pb-10 border-b border-gray-100">
-    <h2 class="text-xl font-bold text-gray-900 mb-4">Solution</h2>
-    <div class="prose text-gray-700 leading-relaxed space-y-3 text-sm">
+  <section class="mb-10 pb-10 border-b border-zg-border">
+    <h2 class="text-xl font-bold text-white mb-4">Solution</h2>
+    <div class="prose text-white/70 leading-relaxed space-y-3 text-sm">
       <p>My approach is based on the idea that teachers will change the way they work if instructed and coached by their managers.</p>
       <p>The proposed solution is to build a social accountability loop within the school's hierarchy. Zero Gravity doesn't chase teachers, the Head of Department (HoD) does it for us.</p>
       <p>The idea is that a teacher will be more accountable to the tool if its usage is looped into their reviews and conversations with their manager.</p>
@@ -54,11 +54,11 @@
   </section>
 
   <%# Market Research %>
-  <section class="mb-10 pb-10 border-b border-gray-100">
-    <h2 class="text-xl font-bold text-gray-900 mb-4">Market Research</h2>
-    <p class="text-sm text-gray-700 leading-relaxed mb-5">Market research was performed in order to find successful examples where this implementation increased activation.</p>
-    <blockquote class="border-l-4 border-gray-200 pl-5 py-1">
-      <p class="text-sm text-gray-600 italic leading-relaxed">
+  <section class="mb-10 pb-10 border-b border-zg-border">
+    <h2 class="text-xl font-bold text-white mb-4">Market Research</h2>
+    <p class="text-sm text-white/70 leading-relaxed mb-5">Market research was performed in order to find successful examples where this implementation increased activation.</p>
+    <blockquote class="border-l-4 border-zg-border pl-5 py-1">
+      <p class="text-sm text-white/50 italic leading-relaxed">
         The two pillars of the design are each independently well-evidenced:<br>
         (a) Admin/manager usage visibility is the standard playbook for driving account-level adoption (some examples are Nearpod, Clever, Slack and Newsela);<br>
         (b) First-week onboarding checklists reliably lift activation and conversion (Ghost saw a 1,000%+ conversion increase for one cohort; Sked Social tripled conversions).
@@ -67,73 +67,73 @@
   </section>
 
   <%# Target Audience %>
-  <section class="mb-10 pb-10 border-b border-gray-100">
-    <h2 class="text-xl font-bold text-gray-900 mb-5">Target Audience</h2>
+  <section class="mb-10 pb-10 border-b border-zg-border">
+    <h2 class="text-xl font-bold text-white mb-5">Target Audience</h2>
     <div class="space-y-5">
       <div>
-        <p class="text-sm font-semibold text-gray-900 mb-1">Primary: Classroom teacher.</p>
-        <p class="text-sm text-gray-700 leading-relaxed">Time-poor, mildly sceptical of new tools thrust upon them by management. Needs a clear, bounded path to value, not open-ended exploration. Five tasks due for the first week will probably activate more users than an empty screen.</p>
+        <p class="text-sm font-semibold text-white mb-1">Primary: Classroom teacher.</p>
+        <p class="text-sm text-white/70 leading-relaxed">Time-poor, mildly sceptical of new tools thrust upon them by management. Needs a clear, bounded path to value, not open-ended exploration. Five tasks due for the first week will probably activate more users than an empty screen.</p>
       </div>
       <div>
-        <p class="text-sm font-semibold text-gray-900 mb-1">Secondary: Head of Department.</p>
-        <p class="text-sm text-gray-700 leading-relaxed">More accountable for the ROI of the School Hub, line manager to the teachers who need to be activated. Needs visibility and one simple action. Must feel like a <em>coach</em>, not an auditor.</p>
+        <p class="text-sm font-semibold text-white mb-1">Secondary: Head of Department.</p>
+        <p class="text-sm text-white/70 leading-relaxed">More accountable for the ROI of the School Hub, line manager to the teachers who need to be activated. Needs visibility and one simple action. Must feel like a <em>coach</em>, not an auditor.</p>
       </div>
     </div>
   </section>
 
   <%# What We're Building %>
-  <section class="mb-10 pb-10 border-b border-gray-100">
-    <h2 class="text-xl font-bold text-gray-900 mb-6">What We're Building</h2>
+  <section class="mb-10 pb-10 border-b border-zg-border">
+    <h2 class="text-xl font-bold text-white mb-6">What We're Building</h2>
 
     <%# Screen 1 %>
     <div class="mb-8">
-      <h3 class="text-base font-semibold text-gray-900 mb-1">
+      <h3 class="text-base font-semibold text-white mb-1">
         Screen 1 · Teacher Task List
-        <span class="text-zg-blue font-mono text-sm font-medium ml-1">/t/dash</span>
+        <span class="text-zg-teal font-mono text-sm font-medium ml-1">/t/dash</span>
       </h3>
-      <p class="text-sm text-gray-700 leading-relaxed mb-4">A personalised first-week checklist replacing the blank dashboard. The goal is for a teacher to be able to complete in under 25 minutes across the week. This gives them small wins and holds their hand through the first few usages of the tool.</p>
-      <p class="text-sm text-gray-600 leading-relaxed mb-5 bg-gray-50 border border-gray-200 rounded-lg px-4 py-3"><strong>Note:</strong> For this feature, I am assuming all the teacher's classes and students have already been added to the platform as we should get this data when the school becomes a customer.</p>
+      <p class="text-sm text-white/70 leading-relaxed mb-4">A personalised first-week checklist replacing the blank dashboard. The goal is for a teacher to be able to complete in under 25 minutes across the week. This gives them small wins and holds their hand through the first few usages of the tool.</p>
+      <p class="text-sm text-white/60 leading-relaxed mb-5 bg-white/5 border border-zg-border rounded-lg px-4 py-3"><strong>Note:</strong> For this feature, I am assuming all the teacher's classes and students have already been added to the platform as we should get this data when the school becomes a customer.</p>
 
-      <div class="bg-white border border-gray-200 rounded-xl overflow-hidden mb-5">
+      <div class="bg-zg-surface border border-zg-border rounded-xl overflow-hidden mb-5">
         <table class="w-full text-sm">
           <thead>
-            <tr class="bg-gray-50 border-b border-gray-100">
-              <th class="px-4 py-3 text-left text-xs font-semibold text-gray-500 uppercase tracking-wide w-8">#</th>
-              <th class="px-4 py-3 text-left text-xs font-semibold text-gray-500 uppercase tracking-wide">Task</th>
-              <th class="px-4 py-3 text-left text-xs font-semibold text-gray-500 uppercase tracking-wide">Why</th>
+            <tr class="bg-white/5 border-b border-zg-border">
+              <th class="px-4 py-3 text-left text-xs font-semibold text-white/40 uppercase tracking-wide w-8">#</th>
+              <th class="px-4 py-3 text-left text-xs font-semibold text-white/40 uppercase tracking-wide">Task</th>
+              <th class="px-4 py-3 text-left text-xs font-semibold text-white/40 uppercase tracking-wide">Why</th>
             </tr>
           </thead>
-          <tbody class="divide-y divide-gray-50 text-gray-700">
+          <tbody class="divide-y divide-white/5 text-white/70">
             <tr>
-              <td class="px-4 py-3.5 text-gray-400 font-medium">1</td>
+              <td class="px-4 py-3.5 text-white/40 font-medium">1</td>
               <td class="px-4 py-3.5">Set up your first class's subject</td>
-              <td class="px-4 py-3.5 text-gray-600">Creates a foundation: the teacher will have the class's curriculum on the system after this step.</td>
+              <td class="px-4 py-3.5 text-white/60">Creates a foundation: the teacher will have the class's curriculum on the system after this step.</td>
             </tr>
             <tr>
-              <td class="px-4 py-3.5 text-gray-400 font-medium">2</td>
+              <td class="px-4 py-3.5 text-white/40 font-medium">2</td>
               <td class="px-4 py-3.5">Assign your first topic</td>
-              <td class="px-4 py-3.5 text-gray-600">Connects the curriculum to the AI tutor <em>(assumption)</em></td>
+              <td class="px-4 py-3.5 text-white/60">Connects the curriculum to the AI tutor <em>(assumption)</em></td>
             </tr>
             <tr>
-              <td class="px-4 py-3.5 text-gray-400 font-medium">3</td>
+              <td class="px-4 py-3.5 text-white/40 font-medium">3</td>
               <td class="px-4 py-3.5">Check a student's report</td>
-              <td class="px-4 py-3.5 text-gray-600">The first aha moment — real data, real value</td>
+              <td class="px-4 py-3.5 text-white/60">The first aha moment — real data, real value</td>
             </tr>
             <tr>
-              <td class="px-4 py-3.5 text-gray-400 font-medium">4</td>
+              <td class="px-4 py-3.5 text-white/40 font-medium">4</td>
               <td class="px-4 py-3.5">Share AI Tutor with students</td>
-              <td class="px-4 py-3.5 text-gray-600">The teacher becomes an advocate, which also improves the value they get from School Hub</td>
+              <td class="px-4 py-3.5 text-white/60">The teacher becomes an advocate, which also improves the value they get from School Hub</td>
             </tr>
             <tr>
-              <td class="px-4 py-3.5 text-gray-400 font-medium">5</td>
+              <td class="px-4 py-3.5 text-white/40 font-medium">5</td>
               <td class="px-4 py-3.5">Set a weekly check-in reminder</td>
-              <td class="px-4 py-3.5 text-gray-600">Converts a one-off into a habit: the actual retention mechanism</td>
+              <td class="px-4 py-3.5 text-white/60">Converts a one-off into a habit: the actual retention mechanism</td>
             </tr>
           </tbody>
         </table>
       </div>
 
-      <div class="text-sm text-gray-700 leading-relaxed space-y-2">
+      <div class="text-sm text-white/70 leading-relaxed space-y-2">
         <p>Progress bar at the top (turns green at 5/5). Task completion must feel dynamic and gamified. Footer copy reads: <em>"Your HoD can see your progress"</em>. This does 2 things: shows that we're transparent with the teacher and adds a bit of pressure for them to use School Hub.</p>
         <p>We can also add daily email reminders to teachers who have 0 progress.</p>
       </div>
@@ -141,11 +141,11 @@
 
     <%# Screen 2 %>
     <div>
-      <h3 class="text-base font-semibold text-gray-900 mb-2">
+      <h3 class="text-base font-semibold text-white mb-2">
         Screen 2 · HoD Dashboard
-        <span class="text-zg-blue font-mono text-sm font-medium ml-1">/hod/dash</span>
+        <span class="text-zg-teal font-mono text-sm font-medium ml-1">/hod/dash</span>
       </h3>
-      <div class="text-sm text-gray-700 leading-relaxed space-y-2">
+      <div class="text-sm text-white/70 leading-relaxed space-y-2">
         <p>A table of every teacher in the department: name, task progress (X/5), last active, status badge (Activated / In progress / Not started), and a <strong>one-click nudge button.</strong> Three summary stat cards at the top. No content of individual tasks is visible, only the completion state.</p>
         <p><strong>Copy principle:</strong> <em>"Help your team get set up"</em>; not: <em>"Track your team's compliance."</em></p>
       </div>
@@ -153,36 +153,36 @@
   </section>
 
   <%# What We Deliberately Cut %>
-  <section class="mb-10 pb-10 border-b border-gray-100">
-    <h2 class="text-xl font-bold text-gray-900 mb-5">What We Deliberately Cut</h2>
-    <div class="bg-white border border-gray-200 rounded-xl overflow-hidden">
+  <section class="mb-10 pb-10 border-b border-zg-border">
+    <h2 class="text-xl font-bold text-white mb-5">What We Deliberately Cut</h2>
+    <div class="bg-zg-surface border border-zg-border rounded-xl overflow-hidden">
       <table class="w-full text-sm">
         <thead>
-          <tr class="bg-gray-50 border-b border-gray-100">
-            <th class="px-5 py-3 text-left text-xs font-semibold text-gray-500 uppercase tracking-wide">Cut</th>
-            <th class="px-5 py-3 text-left text-xs font-semibold text-gray-500 uppercase tracking-wide">Reasoning</th>
+          <tr class="bg-white/5 border-b border-zg-border">
+            <th class="px-5 py-3 text-left text-xs font-semibold text-white/40 uppercase tracking-wide">Cut</th>
+            <th class="px-5 py-3 text-left text-xs font-semibold text-white/40 uppercase tracking-wide">Reasoning</th>
           </tr>
         </thead>
-        <tbody class="divide-y divide-gray-50 text-gray-700">
+        <tbody class="divide-y divide-white/5 text-white/70">
           <tr>
             <td class="px-5 py-3.5 whitespace-nowrap">Real auth / SSO</td>
-            <td class="px-5 py-3.5 text-gray-600">Days of setup, zero product insight for the demo</td>
+            <td class="px-5 py-3.5 text-white/60">Days of setup, zero product insight for the demo</td>
           </tr>
           <tr>
             <td class="px-5 py-3.5 whitespace-nowrap">Email delivery</td>
-            <td class="px-5 py-3.5 text-gray-600">Toast + state change proves the concept; infra is solved</td>
+            <td class="px-5 py-3.5 text-white/60">Toast + state change proves the concept; infra is solved</td>
           </tr>
           <tr>
             <td class="px-5 py-3.5 whitespace-nowrap">Multi-department views</td>
-            <td class="px-5 py-3.5 text-gray-600">Model already supports it: scope protects demo quality</td>
+            <td class="px-5 py-3.5 text-white/60">Model already supports it: scope protects demo quality</td>
           </tr>
           <tr>
             <td class="px-5 py-3.5 whitespace-nowrap">Historical analytics</td>
-            <td class="px-5 py-3.5 text-gray-600">Build it when teachers are retained, not to get them there</td>
+            <td class="px-5 py-3.5 text-white/60">Build it when teachers are retained, not to get them there</td>
           </tr>
           <tr>
             <td class="px-5 py-3.5 whitespace-nowrap">Full class management</td>
-            <td class="px-5 py-3.5 text-gray-600">The teacher needs a reason to log in, not an admin suite on day 1</td>
+            <td class="px-5 py-3.5 text-white/60">The teacher needs a reason to log in, not an admin suite on day 1</td>
           </tr>
         </tbody>
       </table>
@@ -190,52 +190,52 @@
   </section>
 
   <%# GTM Angle %>
-  <section class="mb-10 pb-10 border-b border-gray-100">
-    <h2 class="text-xl font-bold text-gray-900 mb-4">GTM Angle</h2>
-    <p class="text-sm text-gray-700 leading-relaxed">The HoD dashboard is also a sales asset. During the school sales cycle, showing a prospective HoD "here's how you'll know it's working" shifts the conversation from a features pitch to an accountability conversation, where HoDs live. Activation visibility also creates a natural expansion vector: once a department is active, show the HoD a cross-department view.</p>
+  <section class="mb-10 pb-10 border-b border-zg-border">
+    <h2 class="text-xl font-bold text-white mb-4">GTM Angle</h2>
+    <p class="text-sm text-white/70 leading-relaxed">The HoD dashboard is also a sales asset. During the school sales cycle, showing a prospective HoD "here's how you'll know it's working" shifts the conversation from a features pitch to an accountability conversation, where HoDs live. Activation visibility also creates a natural expansion vector: once a department is active, show the HoD a cross-department view.</p>
   </section>
 
   <%# Potential Risk %>
-  <section class="mb-10 pb-10 border-b border-gray-100">
-    <h2 class="text-xl font-bold text-gray-900 mb-4">Potential Risk</h2>
-    <p class="text-sm text-gray-700 leading-relaxed">That teachers complete the checklist <em>because their HoD can see it</em>, not despite it. If the framing reads as surveillance rather than support, the feature might produce resentment. Test this with a two-variant HoD dashboard: coaching language vs. compliance language. Measure task completion rate and teacher NPS per variant.</p>
+  <section class="mb-10 pb-10 border-b border-zg-border">
+    <h2 class="text-xl font-bold text-white mb-4">Potential Risk</h2>
+    <p class="text-sm text-white/70 leading-relaxed">That teachers complete the checklist <em>because their HoD can see it</em>, not despite it. If the framing reads as surveillance rather than support, the feature might produce resentment. Test this with a two-variant HoD dashboard: coaching language vs. compliance language. Measure task completion rate and teacher NPS per variant.</p>
   </section>
 
   <%# Success Metrics %>
-  <section class="mb-10 pb-10 border-b border-gray-100">
-    <h2 class="text-xl font-bold text-gray-900 mb-4">Success Metrics</h2>
-    <div class="text-sm text-gray-700 leading-relaxed space-y-2 mb-5">
+  <section class="mb-10 pb-10 border-b border-zg-border">
+    <h2 class="text-xl font-bold text-white mb-4">Success Metrics</h2>
+    <div class="text-sm text-white/70 leading-relaxed space-y-2 mb-5">
       <p>Week-1 task completion rate per teacher, segmented by whether their HoD viewed the dashboard that week and also segmented by HoD who nudged. <em>A significant gap proves the accountability loop works.</em></p>
       <p>We should also A/B test the tasks themselves against an empty dashboard. <em>Do the tasks increase activation?</em></p>
     </div>
-    <div class="bg-white border border-gray-200 rounded-xl overflow-hidden">
+    <div class="bg-zg-surface border border-zg-border rounded-xl overflow-hidden">
       <table class="w-full text-sm">
         <thead>
-          <tr class="bg-gray-50 border-b border-gray-100">
-            <th class="px-5 py-3 text-left text-xs font-semibold text-gray-500 uppercase tracking-wide">Metric</th>
-            <th class="px-5 py-3 text-left text-xs font-semibold text-gray-500 uppercase tracking-wide">Target</th>
+          <tr class="bg-white/5 border-b border-zg-border">
+            <th class="px-5 py-3 text-left text-xs font-semibold text-white/40 uppercase tracking-wide">Metric</th>
+            <th class="px-5 py-3 text-left text-xs font-semibold text-white/40 uppercase tracking-wide">Target</th>
           </tr>
         </thead>
-        <tbody class="divide-y divide-gray-50 text-gray-700">
+        <tbody class="divide-y divide-white/5 text-white/70">
           <tr>
             <td class="px-5 py-3.5">Teachers completing 5/5 tasks in week 1</td>
-            <td class="px-5 py-3.5 font-semibold text-zg-blue">&gt;60%</td>
+            <td class="px-5 py-3.5 font-semibold text-zg-teal">&gt;60%</td>
           </tr>
           <tr>
             <td class="px-5 py-3.5">HoDs opening the dashboard in week 1</td>
-            <td class="px-5 py-3.5 font-semibold text-zg-blue">&gt;80%</td>
+            <td class="px-5 py-3.5 font-semibold text-zg-teal">&gt;80%</td>
           </tr>
           <tr>
             <td class="px-5 py-3.5">Completion rate gap: HoD-viewed vs. not</td>
-            <td class="px-5 py-3.5 font-semibold text-zg-blue">&gt;20pp</td>
+            <td class="px-5 py-3.5 font-semibold text-zg-teal">&gt;20pp</td>
           </tr>
           <tr>
             <td class="px-5 py-3.5">Nudge-to-completion rate (within 48h)</td>
-            <td class="px-5 py-3.5 font-semibold text-zg-blue">&gt;40%</td>
+            <td class="px-5 py-3.5 font-semibold text-zg-teal">&gt;40%</td>
           </tr>
           <tr>
             <td class="px-5 py-3.5">30-day weekly login retention (activated teachers)</td>
-            <td class="px-5 py-3.5 font-semibold text-zg-blue">&gt;50%</td>
+            <td class="px-5 py-3.5 font-semibold text-zg-teal">&gt;50%</td>
           </tr>
         </tbody>
       </table>
@@ -243,20 +243,20 @@
   </section>
 
   <%# How AI Was Used %>
-  <section class="mb-10 pb-10 border-b border-gray-100">
-    <h2 class="text-xl font-bold text-gray-900 mb-4">How AI Was Used</h2>
-    <div class="text-sm text-gray-700 leading-relaxed space-y-3">
+  <section class="mb-10 pb-10 border-b border-zg-border">
+    <h2 class="text-xl font-bold text-white mb-4">How AI Was Used</h2>
+    <div class="text-sm text-white/70 leading-relaxed space-y-3">
       <p><strong>AI handled (~80%):</strong> Rails scaffolding, migrations, model associations, seed data, Tailwind components, controller boilerplate, the nudge toast interaction, and view logic.</p>
       <p><strong>I stepped in (~20%):</strong> The core strategy and product idea were human reasoning using AI to assist on the development of the final idea.</p>
-      <p>The HoD dashboard framing (coach vs. monitor) went through multiple correction passes; Edge cases in the activation status logic (<code class="bg-gray-100 px-1 py-0.5 rounded text-xs font-mono">nil last_login_at</code>, zero-division on task count) needed hands-on debugging after reviewing AI output.</p>
+      <p>The HoD dashboard framing (coach vs. monitor) went through multiple correction passes; Edge cases in the activation status logic (<code class="bg-white/10 px-1 py-0.5 rounded text-xs font-mono">nil last_login_at</code>, zero-division on task count) needed hands-on debugging after reviewing AI output.</p>
       <p>AI was also used for a first draft of this document, which was then reviewed and edited.</p>
     </div>
   </section>
 
   <%# Assumptions %>
   <section class="mb-10">
-    <h2 class="text-xl font-bold text-gray-900 mb-4">Assumptions</h2>
-    <ul class="space-y-2 text-sm text-gray-700">
+    <h2 class="text-xl font-bold text-white mb-4">Assumptions</h2>
+    <ul class="space-y-2 text-sm text-white/70">
       <% [
         "Teachers have at least ~30 minutes of unstructured time during their first week to engage with a new tool",
         "A teacher who completes all 5 tasks in week 1 is a leading indicator of long-term retention, not just a vanity metric",
@@ -268,7 +268,7 @@
         "Zero Gravity has been introduced to teachers by the HoD before they land on the dashboard"
       ].each do |item| %>
         <li class="flex items-start gap-2.5">
-          <span class="mt-1.5 w-1.5 h-1.5 rounded-full bg-gray-400 flex-shrink-0"></span>
+          <span class="mt-1.5 w-1.5 h-1.5 rounded-full bg-white/40 flex-shrink-0"></span>
           <span class="leading-relaxed"><%= item %></span>
         </li>
       <% end %>
@@ -276,16 +276,16 @@
   </section>
 
   <%# Footer %>
-  <div class="pt-8 border-t border-gray-200 flex items-center justify-between">
+  <div class="pt-8 border-t border-zg-border flex items-center justify-between">
     <div>
-      <p class="font-semibold text-gray-900">Zero Gravity</p>
-      <p class="text-xs text-gray-400 mt-0.5">School Hub · PRD v1.0 · June 2025</p>
+      <p class="font-semibold text-white">Zero Gravity</p>
+      <p class="text-xs text-white/40 mt-0.5">School Hub · PRD v1.0 · June 2025</p>
     </div>
     <div class="no-print flex items-center gap-4">
-      <%= link_to teacher_dashboard_path, class: "text-xs text-zg-blue font-medium hover:underline" do %>
+      <%= link_to teacher_dashboard_path, class: "text-xs text-zg-teal font-medium hover:underline" do %>
         Open Teacher demo →
       <% end %>
-      <%= link_to hod_dashboard_path, class: "text-xs text-zg-blue font-medium hover:underline" do %>
+      <%= link_to hod_dashboard_path, class: "text-xs text-zg-teal font-medium hover:underline" do %>
         Open HoD demo →
       <% end %>
     </div>

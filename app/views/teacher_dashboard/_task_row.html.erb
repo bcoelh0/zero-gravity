@@ -1,6 +1,6 @@
 <div id="task_row_<%= task.id %>"
-     class="task-row bg-white rounded-xl border p-5 flex items-start gap-4 transition-all
-            <%= done ? 'border-green-200 bg-green-50/30' : active ? 'border-zg-blue ring-1 ring-zg-blue' : 'border-gray-200' %>"
+     class="task-row bg-zg-surface rounded-xl border p-5 flex items-start gap-4 transition-all
+            <%= done ? 'border-zg-teal/20 bg-zg-teal/5' : active ? 'border-zg-teal ring-1 ring-zg-teal/50' : 'border-zg-border' %>"
      data-task-id="<%= task.id %>">
 
   <%= turbo_frame_tag "task_#{task.id}" do %>
@@ -8,7 +8,7 @@
       <% if done %>
         <%= button_to task_completion_path(completion_id),
               method: :delete,
-              class: "w-6 h-6 rounded-full bg-zg-green flex items-center justify-center text-white text-xs font-bold hover:bg-green-700 transition-colors cursor-pointer",
+              class: "w-6 h-6 rounded-full bg-zg-teal flex items-center justify-center text-zg-bg text-xs font-bold hover:bg-zg-teal/80 transition-colors cursor-pointer",
               form_class: "inline" do %>
           ✓
         <% end %>
@@ -16,7 +16,7 @@
         <%= button_to task_completions_path,
               params: { teacher_id: teacher.id, onboarding_task_id: task.id },
               method: :post,
-              class: "w-6 h-6 rounded-full border-2 border-gray-300 hover:border-zg-blue transition-colors bg-white cursor-pointer",
+              class: "w-6 h-6 rounded-full border-2 border-white/30 hover:border-zg-teal transition-colors bg-transparent cursor-pointer",
               form_class: "inline" do %>
           &nbsp;
         <% end %>
@@ -27,15 +27,15 @@
   <%= link_to task_path(task), data: { turbo_frame: "task_detail" },
         class: "flex-1 min-w-0 group cursor-pointer" do %>
     <p class="font-semibold text-sm transition-colors
-              <%= done ? 'text-gray-400 line-through group-hover:text-gray-600' : active ? 'text-zg-blue' : 'text-gray-900 group-hover:text-zg-blue' %>">
+              <%= done ? 'text-white/35 line-through group-hover:text-white/60' : active ? 'text-zg-teal' : 'text-white group-hover:text-zg-teal' %>">
       <%= task.title %>
     </p>
-    <p class="text-xs mt-0.5 leading-relaxed <%= done ? 'text-gray-400' : 'text-gray-500' %>"><%= task.description %></p>
+    <p class="text-xs mt-0.5 leading-relaxed <%= done ? 'text-white/35' : 'text-white/50' %>"><%= task.description %></p>
     <% if done && local_assigns[:completed_at] %>
-      <p class="text-xs text-gray-300 mt-1">Completed <%= time_ago_in_words(completed_at) %> ago</p>
+      <p class="text-xs text-white/25 mt-1">Completed <%= time_ago_in_words(completed_at) %> ago</p>
     <% end %>
   <% end %>
 
-  <span class="text-xs font-medium text-gray-300 mt-0.5 flex-shrink-0"><%= task.position %>/5</span>
+  <span class="text-xs font-medium text-white/25 mt-0.5 flex-shrink-0"><%= task.position %>/5</span>
 
 </div>

@@ -60,8 +60,8 @@ dan = Teacher.create!(
   subject: "Mathematics", curriculum_level: "GCSE", topic: "Quadratic equations",
   weekly_email_opted_in: true
 )
-[t1, t2, t3, t4, t5].each do |t|
-  TeacherTaskCompletion.create!(teacher: dan, onboarding_task: t, completed_at: rand(1..3).days.ago)
+[t1, t2, t3, t4, t5].each_with_index do |t, i|
+  TeacherTaskCompletion.create!(teacher: dan, onboarding_task: t, completed_at: (4 - i).days.ago)
 end
 
 # Priya — in progress (3/5 tasks, logged in yesterday)
@@ -71,15 +71,16 @@ priya = Teacher.create!(
   last_login_at: 1.day.ago,
   subject: "Mathematics", curriculum_level: "A-Level", topic: "Trigonometry"
 )
-[t1, t2, t3].each do |t|
-  TeacherTaskCompletion.create!(teacher: priya, onboarding_task: t, completed_at: rand(2..4).days.ago)
+[t1, t2, t3].each_with_index do |t, i|
+  TeacherTaskCompletion.create!(teacher: priya, onboarding_task: t, completed_at: (3 - i).days.ago)
 end
 
 # James — barely started (1/5, logged in 4 days ago and went quiet)
 james = Teacher.create!(
   department: maths, name: "James Whitfield",
   email: "j.whitfield@oakwood.ac.uk", role: :teacher,
-  last_login_at: 4.days.ago
+  last_login_at: 4.days.ago,
+  subject: "Mathematics", curriculum_level: "KS3"
 )
 TeacherTaskCompletion.create!(teacher: james, onboarding_task: t1, completed_at: 4.days.ago)
 

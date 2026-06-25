@@ -12,7 +12,15 @@
           extend: {
             fontFamily: { sans: ['Inter', 'sans-serif'] },
             colors: {
-              zg: { blue: '#2563EB', light: '#EFF6FF', green: '#16A34A', gray: '#6B7280' }
+              zg: {
+                teal:    '#00fad7',
+                blue:    '#00fad7',
+                green:   '#00fad7',
+                gray:    '#7aacac',
+                bg:      '#0d2626',
+                surface: '#163232',
+                border:  '#1f3e3e',
+              }
             }
           }
         }
@@ -22,16 +30,21 @@
     <%= yield :head %>
     <%= javascript_importmap_tags %>
   </head>
-  <body class="bg-gray-50 font-sans text-gray-900">
-    <nav class="bg-white border-b border-gray-200 px-6 py-3 flex items-center justify-between">
+  <body class="bg-zg-bg font-sans text-white min-h-screen">
+    <nav class="bg-zg-bg border-b border-zg-border px-6 py-3 flex items-center justify-between">
+      <%= link_to root_path, class: "flex items-center gap-3" do %>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 294.574 114.998" class="h-8 self-start text-white">
+          <path d="M59.133 34.182 29.395 8.942 23.53 23.521 44.2 41.01Z" fill="#00fad7"></path>
+          <path d="M44.213 2.096 29.394 8.943l29.738 25.24-48.867 22.352-8.136 20.242 84.351-38.8ZM29.189 80.632l29.94 25.389 5.836-14.512-20.821-17.763Z" fill="currentColor"></path>
+          <path d="m44.115 112.902 15.013-6.878-29.939-25.389 49.192-22.652 8.1-20-84.351 38.8Z" fill="#00fad7"></path>
+          <path d="M88.616 37.453 44.499 0 28.005 7.621l-6.609 16.434 19.511 16.5L8.88 55.21.003 77.296l43.819 37.7 16.7-7.65 6.579-16.36L47.42 74.201l32.348-14.9ZM25.663 22.995l4.462-11.1 25.717 21.826-11.354 5.194Zm-14.01 34.864 50.77-23.224L32.68 9.389l11.252-5.2L83.2 37.526 5.458 73.285Zm51.18 34.176-4.436 11.031-25.922-21.983 11.379-5.24Zm-36.929-11.85 29.935 25.385-11.427 5.235-39.016-33.57 77.746-35.76-6.147 15.183Z" fill="currentColor"></path>
+          <path d="M100.797 82.478c0-8.987 6.531-15.912 15.912-15.912a15.045 15.045 0 0 1 14.988 11.397h-6.966a8.459 8.459 0 0 0-8.022-5.085c-5.523 0-9.161 4.12-9.161 9.6 0 5.523 3.682 9.731 9.205 9.731 3.726 0 6.751-1.446 8.285-4.777h-8.109v-5.528h15.342c-.22 11.971-8.548 16.53-15.562 16.53-9.381-.044-15.912-6.93-15.912-15.956Zm148.231 15.365V73.295h-8.2v-6.138h22.882v6.137h-8.2v24.549Zm28.231-.022V84.933l-10.828-17.8h7.5l6.224 11h.483l6.269-11h7.671l-10.827 17.8v12.888Zm-93.6 0-1.973-6.137h-12.055l-1.972 6.137h-7.014l10.389-30.685h9.206l10.3 30.685Zm-12.142-12.1h8.241l-3.9-12.011h-.482Zm49.667 12.1v-5.962h4.121V73.097h-4.121v-5.961h14.86v5.962h-4.208v18.761h4.208v5.962Zm-23.709 0-9.95-30.685h7.012l7.031 24.11h.772l7.584-24.11h7.233l-10.26 30.684Zm-45.928 0-5.65-11.091h-3.118v11.09h-6.531V67.136h10.564c6.444 0 10.96 3.858 10.96 9.6a9.374 9.374 0 0 1-5.48 8.986l6.707 12.1Zm-8.768-17.009h4.118a3.74 3.74 0 0 0 4.076-3.945c0-1.973-1.359-3.638-4.3-3.638h-3.9Zm40.963-38.84a16 16 0 0 1 32 0 16 16 0 0 1-32 0Zm6.751 0c0 5.567 3.9 9.644 9.249 9.644 5.26 0 9.25-4.077 9.25-9.644a9.189 9.189 0 0 0-9.25-9.556c-5.345 0-9.245 4.077-9.245 9.556ZM172.98 57.358l-5.655-11.09h-3.112v11.09h-6.532V26.674h10.564c6.444 0 10.959 3.857 10.959 9.6a9.374 9.374 0 0 1-5.48 8.986l6.707 12.1Zm-8.767-17.008h4.121a3.74 3.74 0 0 0 4.076-3.946c0-1.973-1.359-3.638-4.3-3.638h-3.9Zm-32.07 17.008V26.674h19.288v6.137h-12.756v5.918h11v6.093h-11v6.444h13.194v6.093Zm-30.47 0v-8.81l17.224-15.475v-.482h-16.741v-5.918h23.277v8.9l-17.184 15.385v.482h17.271v5.918Z" fill="currentColor"></path>
+        </svg>
+      <% end %>
       <div class="flex items-center gap-2">
-        <span class="text-zg-blue font-bold text-lg tracking-tight">Zero Gravity</span>
-        <span class="text-gray-400 text-sm">School Hub</span>
-      </div>
-      <div class="flex items-center gap-2">
-        <span class="text-xs text-gray-400 font-medium">Demo:</span>
+        <span class="text-xs text-white/40 font-medium">Demo:</span>
         <select onchange="if(this.value) window.location=this.value"
-                class="text-xs border border-gray-200 rounded-lg px-2 py-1.5 text-gray-700 bg-white focus:outline-none focus:ring-2 focus:ring-zg-blue cursor-pointer">
+                class="text-xs border border-zg-border rounded-lg px-2 py-1.5 text-white/80 bg-zg-surface focus:outline-none focus:ring-2 focus:ring-zg-teal cursor-pointer">
           <optgroup label="Teacher view">
             <% @nav_teachers.each do |t| %>
               <option value="<%= demo_switch_path(teacher_id: t.id) %>"

@@ -1,11 +1,11 @@
 <turbo-frame id="task_detail">
-  <div class="detail-content bg-white rounded-xl border border-gray-200 flex flex-col">
-    <div class="px-6 py-4 border-b border-gray-100">
-      <span class="text-xs font-medium text-gray-400 uppercase tracking-wide">Task 4 of 5</span>
+  <div class="detail-content bg-zg-surface rounded-xl border border-zg-border flex flex-col">
+    <div class="px-6 py-4 border-b border-zg-border">
+      <span class="text-xs font-medium text-white/40 uppercase tracking-wide">Task 4 of 5</span>
     </div>
     <div class="px-6 py-6">
-      <h2 class="text-lg font-bold text-gray-900 mb-1">Share the AI Tutor with your students</h2>
-      <p class="text-sm text-gray-500 mb-6">Send students their join link — takes 2 minutes. Once they're in, you'll see their activity here.</p>
+      <h2 class="text-lg font-bold text-white mb-1">Share the AI Tutor with your students</h2>
+      <p class="text-sm text-white/50 mb-6">Send students their join link — takes 2 minutes. Once they're in, you'll see their activity here.</p>
 
       <%
         subject_slug = (teacher.subject || "maths").downcase.gsub(/\s+/, "-").gsub(/[^a-z0-9\-]/, "")
@@ -13,23 +13,23 @@
       %>
 
       <div class="mb-2">
-        <label class="block text-xs font-medium text-gray-600 mb-1">Your class join link</label>
+        <label class="block text-xs font-medium text-white/60 mb-1">Your class join link</label>
         <div class="flex items-center gap-2">
-          <div class="flex-1 bg-gray-50 border border-gray-200 rounded-lg px-3 py-2.5 text-sm font-mono text-gray-700 truncate">
+          <div class="flex-1 bg-white/10 border border-zg-border rounded-lg px-3 py-2.5 text-sm font-mono text-white/80 truncate">
             <%= join_link %>
           </div>
           <button id="copy-btn" onclick="copyAndComplete()" type="button"
-                  class="flex-shrink-0 bg-zg-blue text-white text-sm font-semibold px-4 py-2.5 rounded-lg hover:bg-blue-700 transition-colors cursor-pointer">
+                  class="flex-shrink-0 bg-zg-teal text-zg-bg text-sm font-semibold px-4 py-2.5 rounded-lg hover:bg-zg-teal/80 transition-colors cursor-pointer">
             Copy link
           </button>
         </div>
       </div>
 
       <details class="mt-5">
-        <summary class="text-xs text-gray-400 hover:text-gray-600 cursor-pointer select-none">
+        <summary class="text-xs text-white/40 hover:text-white/60 cursor-pointer select-none">
           Suggested message to paste into email or message ›
         </summary>
-        <div class="mt-3 bg-gray-50 rounded-lg border border-gray-200 p-3 text-xs text-gray-600 leading-relaxed">
+        <div class="mt-3 bg-white/5 rounded-lg border border-zg-border p-3 text-xs text-white/60 leading-relaxed">
           Hi everyone,<br><br>
           We're using Zero Gravity this term to support your
           <%= teacher.subject&.downcase || "revision" %>.

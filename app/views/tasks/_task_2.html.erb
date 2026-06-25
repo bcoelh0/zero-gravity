@@ -1,21 +1,21 @@
 <turbo-frame id="task_detail">
-  <div class="detail-content bg-white rounded-xl border border-gray-200 flex flex-col">
-    <div class="px-6 py-4 border-b border-gray-100">
-      <span class="text-xs font-medium text-gray-400 uppercase tracking-wide">Task 2 of 5</span>
+  <div class="detail-content bg-zg-surface rounded-xl border border-zg-border flex flex-col">
+    <div class="px-6 py-4 border-b border-zg-border">
+      <span class="text-xs font-medium text-white/40 uppercase tracking-wide">Task 2 of 5</span>
     </div>
     <div class="px-6 py-6">
-      <h2 class="text-lg font-bold text-gray-900 mb-1">Assign your first topic</h2>
+      <h2 class="text-lg font-bold text-white mb-1">Assign your first topic</h2>
       <% subject_label = teacher.subject.presence || "Year 10 Maths" %>
       <% level_label   = teacher.curriculum_level.presence %>
-      <p class="text-sm text-gray-500 mb-6">
-        You're teaching <strong class="text-gray-700"><%= subject_label %><%= level_label ? " (#{level_label})" : "" %></strong>.
+      <p class="text-sm text-white/50 mb-6">
+        You're teaching <strong class="text-white/80"><%= subject_label %><%= level_label ? " (#{level_label})" : "" %></strong>.
         What are you covering this half-term? The AI tutor will align revision and practice to it.
       </p>
 
       <% if completed && teacher.topic.present? %>
-        <div class="bg-gray-50 rounded-xl border border-gray-200 p-4 mb-6">
-          <p class="text-xs font-medium text-gray-400 mb-1">Current topic</p>
-          <p class="text-sm font-semibold text-gray-800"><%= teacher.topic %></p>
+        <div class="bg-white/5 rounded-xl border border-zg-border p-4 mb-6">
+          <p class="text-xs font-medium text-white/40 mb-1">Current topic</p>
+          <p class="text-sm font-semibold text-white"><%= teacher.topic %></p>
         </div>
       <% else %>
         <%
@@ -36,17 +36,17 @@
         <% end %>
 
         <div class="mb-4">
-          <label class="block text-xs font-medium text-gray-600 mb-1">Topic</label>
+          <label class="block text-xs font-medium text-white/60 mb-1">Topic</label>
           <input id="topic-input" type="text" placeholder="e.g. <%= chips.first %>"
                  oninput="document.getElementById('topic-hidden').value = this.value"
-                 class="w-full text-sm border border-gray-200 rounded-lg px-3 py-2.5 focus:outline-none focus:ring-2 focus:ring-zg-blue" />
+                 class="w-full text-sm border border-zg-border rounded-lg px-3 py-2.5 bg-zg-bg text-white placeholder-white/25 focus:outline-none focus:ring-2 focus:ring-zg-teal" />
         </div>
 
         <div class="flex flex-wrap gap-2 mb-6">
           <% chips.each do |chip| %>
             <button onclick="document.getElementById('topic-input').value = '<%= chip %>'; document.getElementById('topic-hidden').value = '<%= chip %>'"
                     type="button"
-                    class="text-xs px-3 py-1.5 rounded-full border border-gray-200 text-gray-600 hover:border-zg-blue hover:text-zg-blue transition-colors cursor-pointer bg-white">
+                    class="text-xs px-3 py-1.5 rounded-full border border-zg-border text-white/60 hover:border-zg-teal hover:text-zg-teal transition-colors cursor-pointer bg-zg-bg">
               <%= chip %>
             </button>
           <% end %>
@@ -54,7 +54,7 @@
 
         <button onclick="document.getElementById('topic-form').requestSubmit()"
                 type="button"
-                class="w-full bg-zg-blue text-white text-sm font-semibold py-3 px-4 rounded-xl hover:bg-blue-700 transition-colors cursor-pointer">
+                class="w-full bg-zg-teal text-zg-bg text-sm font-semibold py-3 px-4 rounded-xl hover:bg-zg-teal/80 transition-colors cursor-pointer">
           Set topic →
         </button>
       <% end %>
