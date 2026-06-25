@@ -56,7 +56,9 @@ claire = Teacher.create!(
 dan = Teacher.create!(
   department: maths, name: "Daniel Osei",
   email: "d.osei@oakwood.ac.uk", role: :teacher,
-  last_login_at: 2.hours.ago, weekly_email_opted_in: true
+  last_login_at: 2.hours.ago,
+  subject: "Mathematics", curriculum_level: "GCSE", topic: "Quadratic equations",
+  weekly_email_opted_in: true
 )
 [t1, t2, t3, t4, t5].each do |t|
   TeacherTaskCompletion.create!(teacher: dan, onboarding_task: t, completed_at: rand(1..3).days.ago)
@@ -66,7 +68,8 @@ end
 priya = Teacher.create!(
   department: maths, name: "Priya Mehta",
   email: "p.mehta@oakwood.ac.uk", role: :teacher,
-  last_login_at: 1.day.ago
+  last_login_at: 1.day.ago,
+  subject: "Mathematics", curriculum_level: "A-Level", topic: "Trigonometry"
 )
 [t1, t2, t3].each do |t|
   TeacherTaskCompletion.create!(teacher: priya, onboarding_task: t, completed_at: rand(2..4).days.ago)
